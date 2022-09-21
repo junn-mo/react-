@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javaScript" src="../../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作dom，必须在react核心库引入后，才可以引入 -->
+    <script type="text/javaScript" src="../../js/react-dom.development.js"></script>
+    <!-- 用于把jsx转化为js -->
+    <script type="text/javaScript" src="../../js/babel.min.js"></script>
+
+    <!-- 此处一定要写babel -->
+    <script type="text/babel">
+        // 1、组件类的第一个字母必须大写，否则会报错，比如HelloMessage不能写成helloMessage。
+        // 2、组件类只能包含一个顶层标签，否则也会报错。
+        // 3、组件的属性可以在组件类的 this.props 对象上获取
+        class HelloMessage extends React.Component{
+            render(){
+                return <h1>hello {this.props.name}</h1>
+            }
+        }
+
+        ReactDOM.render(
+            // 组件的用法与原生的 HTML 标签完全一致，可以任意加入属性
+            // 添加组件属性，有一个地方需要注意， class 属性需要写成 className ，
+            // for 属性需要写成 htmlFor 
+            // 这是因为 class 和 for 是 JavaScript 的保留字。
+            <HelloMessage name="React"/>,
+            document.getElementById('test')
+        )
+    </script>
+</body>
+</html>
