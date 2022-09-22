@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javaScript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作dom，必须在react核心库引入后，才可以引入 -->
+    <script type="text/javaScript" src="../js/react-dom.development.js"></script>
+    <!-- 用于把jsx转化为js -->
+    <script type="text/javaScript" src="../js/babel.min.js"></script>
+
+    <!-- 此处一定要写babel -->
+    <script type="text/babel">
+        class MyComponent extends React.MyComponent{
+            constructor(props){
+                super(props);
+                this.myTextInput=React.createRef();
+                this.handleClick=this.handleClick.bind(this)
+            }
+            handleClick(){
+                this.myTextInput.current.focus();
+            }
+            render(){
+                return(
+                    <div>
+                        <input type="text" ref={this.myTextInput} />
+                        <input type="button" value="Focus the text input" onClick={this.handleClick}/>
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <MyComponent />,
+            document.getElementById('test')
+        );
+    </script>
+</body>
