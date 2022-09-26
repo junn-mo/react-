@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javaScript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作dom，必须在react核心库引入后，才可以引入 -->
+    <script type="text/javaScript" src="../js/react-dom.development.js"></script>
+    <!-- 用于把jsx转化为js -->
+    <script type="text/javaScript" src="../js/babel.min.js"></script>
+
+    <!-- 此处一定要写babel -->
+    <script type="text/babel">
+      class InputTest extends React.Component{
+        constructor(props){
+            super(props)
+            this.state={
+                value:"hello"
+            }
+            this.changeValue=this.changeValue.bind(this)
+        }
+        changeValue(event){
+            this.setState({value:event.target.value})
+        }
+        render(){
+            var value=this.state.value
+            return (
+                <div>
+                    <input type="text" value={value} onChange={this.changeValue}/>
+                    <p>{value}</p>
+                </div>
+            )
+        }
+      }
+      ReactDOM.render(
+        <InputTest />,
+        document.getElementById('test')
+      )
+    </script>
+</body>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 准备好一个容器 -->
+    <div id="test"></div>
+
+    <!-- 引入react核心库 -->
+    <script type="text/javaScript" src="../js/react.development.js"></script>
+    <!-- 引入react-dom，用于支持react操作dom，必须在react核心库引入后，才可以引入 -->
+    <script type="text/javaScript" src="../js/react-dom.development.js"></script>
+    <!-- 用于把jsx转化为js -->
+    <script type="text/javaScript" src="../js/babel.min.js"></script>
+
+    <!-- 此处一定要写babel -->
+    <script type="text/babel">
+        // React 的一大创新，就是将组件看成是一个状态机，一开始有一个初始状态，然后用户互动，导致状态变化，从而触发重新渲染 UI 
+       class LikeButton extends React.Component{
+        // 由于 this.props 和 this.state 都用于描述组件的特性，可能会产生混淆。区别如下
+        // this.props 表示那些一旦定义，就不再改变的特性;this.state 是会随着用户互动而产生变化的特性。
+        constructor(props){
+            super(props)
+            this.handleClick=this.handleClick.bind(this)
+            this.state={
+                liked:false
+            }
+        }
+        handleClick(event){
+            console.log(event);
+            this.setState({liked:!this.state.liked})
+        }
+        render(){
+            var text=this.state.liked?'like':'haven\'t liked';
+            return (
+                <p onClick={this.handleClick}>
+                    You {text} this. Click to toggle
+                </p>
+            )
+        }
+       }
+       ReactDOM.render(
+        <LikeButton />,
+        document.getElementById('test')
+       )
+    </script>
+</body>

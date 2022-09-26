@@ -19,11 +19,11 @@
 
     <!-- 此处一定要写babel -->
     <script type="text/babel">
-        class MyComponent extends React.MyComponent{
+        class MyComponent extends React.Component{
             constructor(props){
                 super(props);
-                this.myTextInput=React.createRef();
-                this.handleClick=this.handleClick.bind(this)
+                this.myTextInput = React.createRef();
+                this.handleClick = this.handleClick.bind(this)
             }
             handleClick(){
                 this.myTextInput.current.focus();
